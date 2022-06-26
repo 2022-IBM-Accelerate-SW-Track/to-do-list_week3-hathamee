@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Button, TextField } from "@mui/material";
+import { DesktopDatePicker , LocalizationProvider} from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 class AddTodo extends Component {
   // Create a local react state of the this component with both content date property set to nothing.
@@ -7,7 +9,8 @@ class AddTodo extends Component {
     super();
     this.state = {
       content: "",
-      date: ""
+      date: "",
+      due: null,
     };
   }
   // The handleChange function updates the react state with the new input value provided from the user and the current date/time.
@@ -29,10 +32,22 @@ class AddTodo extends Component {
       this.props.addTodo(this.state);
       this.setState({
         content: "",
-        date: ""
+        date: "",
+        due: null,
       });
     }
   };
+  // The handleDueDate function sets the value of your due date.
+  // 1. (Hint: use handleChange as a template. Don't forget to remove the content and date values)
+  // 2. Note that the value from the the date picker will give more that just the date in mm/dd/yyyy. 
+    // To format the date we need set the due date variable to `new Date(event).toLocaleDateString()`
+  handleDueDate = (event) => {
+    this.setState({
+      due: new Date(event).toLocaleDateString(),
+    });
+  };
+
+
   render() {
     return (
       // 1. When rendering a component, you can render as many elements as you like as long as it is wrapped inside
@@ -49,6 +64,15 @@ class AddTodo extends Component {
           onChange={this.handleChange}
           value={this.state.content}
         />
+        <LocalizationProvider dateAdapter={AdapterDateFns}>         
+          <DesktopDatePicker
+            id="new-item-date"
+            label="Due Date"
+            value={this.due}
+            onChange={this.handleDueDate}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </LocalizationProvider>
         <Button
           style={{ marginLeft: "10px" }}
           onClick={this.handleSubmit}
