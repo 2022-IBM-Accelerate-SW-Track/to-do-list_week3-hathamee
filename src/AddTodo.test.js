@@ -1,4 +1,5 @@
 import { render, screen, fireEvent} from '@testing-library/react';
+import { hi } from 'date-fns/locale';
 import { unmountComponentAtNode } from 'react-dom';
 import App from './App';
 
@@ -84,7 +85,7 @@ afterEach(() => {
   const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
   const element = screen.getByRole('button', {name: /Add/i});
   const pastDate = "05/30/2022";
-  const futureDate = "05/30/2022";
+  const futureDate = "05/30/2023";
 
   fireEvent.change(inputTask, { target: { value: "History Test"}});
   fireEvent.change(inputDate, { target: { value: pastDate}});
@@ -96,6 +97,7 @@ afterEach(() => {
 
   const historyCheck = screen.getByTestId(/History Test/i).style.background;
   const spanishCheck = screen.getByTestId(/Spanish HW/i).style.background;
+  expect(historyCheck).toEqual("rgb(255, 255, 0)");
+  expect(spanishCheck).toEqual("rgb(0, 255, 0)");
 
-  expect(historyCheck).toNotEqual(spanishCheck)
  });
