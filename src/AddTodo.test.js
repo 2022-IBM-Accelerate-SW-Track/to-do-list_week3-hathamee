@@ -18,7 +18,7 @@ afterEach(() => {
 });
 
 
- test('test that App component doesn\'t render duplicate Task', () => {
+ test('tests that App component doesn\'t render duplicate Task', () => {
   render(<App />);
   const inputTask = screen.getByRole('textbox', {name: /Add New Item/i});
   const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
@@ -34,7 +34,7 @@ afterEach(() => {
   expect(check).toBeInTheDocument();
  });
 
- test('test that App component doesn\'t add a task without task name', () => {
+ test('tests that App component doesn\'t add a task without task name', () => {
   render(<App />);
   const inputTask = screen.getByRole('textbox', {name: /Add New Item/i});
   const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
@@ -48,7 +48,7 @@ afterEach(() => {
   expect(check).toBeInTheDocument();
  });
 
- test('test that App component doesn\'t add a task without due date', () => {
+ test('tests that App component doesn\'t add a task without due date', () => {
   render(<App />);
   const inputTask = screen.getByRole('textbox', {name: /Add New Item/i});
   const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
@@ -63,7 +63,7 @@ afterEach(() => {
 
 
 
- test('test that App component can be deleted thru checkbox', () => {
+ test('tests that App component can be deleted thru checkbox', () => {
   render(<App />);
   const inputTask = screen.getByRole('textbox', {name: /Add New Item/i});
   const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
@@ -79,7 +79,7 @@ afterEach(() => {
  });
 
 
- test('test that App component renders different colors for past due events', () => {
+ test('tests that App component renders different colors for past due events', () => {
   render(<App />);
   const inputTask = screen.getByRole('textbox', {name: /Add New Item/i});
   const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
